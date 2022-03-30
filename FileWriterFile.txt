@@ -1,4 +1,5 @@
-15 13 6
-Creativity     Baking       8
-Action         Football     10
-Service        Prefect      6
+15 15 2
+Creativity     Baking         8 
+Action         Football       10
+Service        Prefect        6 
+Creativity     Museum         3 
