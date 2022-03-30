@@ -32,9 +32,9 @@ public class Main {
            System.out.println(db.getRecord(1)); //NOT READING PROPERLY
            System.out.println(db.getRecord(2));
            System.out.println(db.getRecord(3));
-           db.getCasType(1); //NOT WORKING BECAUSE GETRECORD IS BROKEN
+           db.getCasType(1); //ADD SOUT
            db.getActivity(2);
-           db.getActivity(3);
+           //db.getActivity(3);
        }
 
    }

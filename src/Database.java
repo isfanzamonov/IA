@@ -24,9 +24,9 @@ public class Database {
        if (rowNumber == 0) {
            return FileHandler.readFromFile(0);
        } else {
-           int start = FileHandler.readFromFile(0).length();
-           start = start + ((padding.get(0) + padding.get(1) + padding.get(2)) * (rowNumber - 1));
-           return FileHandler.readFromFile(start + 1) ;
+           int start = FileHandler.readFromFile(0).length(); //PADDING LINE ACCOUNTED FOR
+           start = start + ((padding.get(0) + padding.get(1) + padding.get(2)) * (rowNumber - 1)) + (rowNumber * 2); //ADDS UP THE LENGTHS OF THE LINES BEFORE IT (IGNORES IF ROWNUMBER IS 1 BECAUSE PADDING LINE ALREADY ACCOUNTED FOR, ROWNUMBER * 2, TAKES INTO ACCOUNT EMPTY SPACES
+           return FileHandler.readFromFile(start) ;
        }
    }
 
