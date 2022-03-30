@@ -8,7 +8,7 @@ public class Main {
        Scanner userInput = new Scanner(System.in); //scanner for taking in user inputs
        System.out.println("1. Input manually");
        System.out.println("2. Input from file");
-       Integer num = userInput.nextInt();
+       int num = userInput.nextInt();
        if (num == 2) {
            FileHandler fh = new FileHandler("FileWriterFile.txt");
            Database db = new Database("FileWriterFile.txt");
@@ -25,6 +25,7 @@ public class Main {
            appendInput.add("Creativity");
            appendInput.add("Museum");
            appendInput.add("3");
+
            db.appendRecord(db.getPadding(), appendInput, true);
        } else {
            System.out.println(db.getPadding());
