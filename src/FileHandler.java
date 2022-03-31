@@ -1,90 +1,76 @@
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.RandomAccessFile;
+import java.io.PrintWriter;
 
 public class FileHandler {
 
-   private static String fileName;
+    private static String fileName;
 
-   public FileHandler(String FileName) {
-       fileName = FileName;
-       linesInFile();
-   }
+    public FileHandler(String FileName) {
 
-   public static int linesInFile() {
-       int lineAmount = 0;
-       try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-           while (br.readLine() != null) lineAmount++;
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-       return lineAmount;
-   }
+        fileName = FileName;
+        linesInFile();
 
-   public static String readFromFile(int start) {
-       // read and print out the contents of a text file
-       // using all the exception handling best practices
-       try (RandomAccessFile rf = new RandomAccessFile(fileName, "rws")) {
-           rf.seek(start);
-           return rf.readLine();
-       }
-       catch (IOException e) {
-           e.printStackTrace();
-       }
-       return null;
-   }
+    }
 
-   public static ArrayList ForLoopReadFromFile(String fileName, int lineAmount) {
-       // read and print out the contents of a text file
-       // using all the exception handling best practices
-       ArrayList<String> readInLines = new ArrayList<>();
-       int counter;
-       try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-           String line = "";
-           for (int i = 0; i < lineAmount; i++) {
-               line = br.readLine();
-               readInLines.add(line);
-           }
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-       return readInLines;
-   }
+    public static void FileCreation() {
 
-   public static void writeToFile(String fileName, String input, boolean append) {
-       try (PrintWriter pr = new PrintWriter(new FileWriter(fileName, append))) {
-           pr.println(input);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
+        File file = new File("FileWriterFile.txt"); //declares file name
 
-   public static void compactFile(String fileName, ArrayList readInLines, boolean append) {
-       String stringCompacter;
-       System.out.println(readInLines.get(0));
-       System.out.println(readInLines.get(1));
-       System.out.println(readInLines.get(2));
-       try (PrintWriter pr = new PrintWriter(new FileWriter(fileName, append))) {
-           for (int i = 0; 0 < 2; i++) {
-               stringCompacter = (readInLines.get(i)).toString();
-               stringCompacter.replaceAll(" ", "");
-               System.out.println(stringCompacter);
-               pr.println(stringCompacter);
-           }
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
+        try {
 
-   public void RandomFile(String fileName, int start)  {
-       try (RandomAccessFile rf = new RandomAccessFile(fileName, "rws")) {
-           rf.seek(start);
-           char letter = (char)rf.read();
-           System.out.println(letter);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
+            if (file.createNewFile()) { //if file created
+                System.out.println("New Text File is created!");
+            } else { //if unable to create (already exists
+                System.out.println("File already exists.");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static int linesInFile() {
+
+        int lineAmount = 0;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            while (br.readLine() != null) lineAmount++; //if data in the line the counter increases, ends when no more data left
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return lineAmount; //returns counter
+
+    }
+
+    public static String readFromFile(int start) {
+
+        try (RandomAccessFile rf = new RandomAccessFile(fileName, "rws")) {
+            rf.seek(start); //seeks the point given
+            return rf.readLine(); //returns the line
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    public static void writeToFile(String fileName, String input, boolean append) {
+
+        try (PrintWriter pr = new PrintWriter(new FileWriter(fileName, append))) {
+            pr.println(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
-
-
